@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: rgb(85, 73, 130);
+    background-color: #a7aa3c;
 }
 
 li, a, button {
@@ -22,8 +22,8 @@ header {
     justify-content: flex-end;
     align-items: center;
     padding: 30px 10%;
-    background: rgb(2,0,36);
-    background: linear-gradient(176deg, rgba(2,0,36,1) 0%, rgba(60,60,60,1) 0%, rgba(0,0,0,1) 100%);
+    background: #303333;
+    background: linear-gradient(176deg, rgba(2,0,36,1) 0%, rgba(60,60,60,1) 0%, #303333 100%);
     height: 23px;
 }
 
@@ -35,7 +35,7 @@ i {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     font-size: 20px;
-    color: rgb(224, 210, 14);
+    color: rgba(167, 167, 4, 1);
     letter-spacing: 0.1rem;
     cursor: pointer;
     margin-right: auto;
@@ -44,7 +44,7 @@ i {
 .logo:hover {
     text-shadow: 1px 1px 5px rgba(224, 204, 88, 0.692);
     text-shadow: 0px 0px 3px rgba(247, 245, 237, 0.384);
-    color: rgb(236, 221, 10);
+    color: rgb(219, 207, 36);
 }
 
 .nav-links {
@@ -79,33 +79,17 @@ button:hover {
     background-color: rgba(167, 167, 4, 0.7);
 }
 
-.subnav-links {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 30px;
-    background-color: rgba(167, 167, 4, 1);
+button:focus {
+    outline: none;
+    border: none;
 }
-
-.subnav-links li a {
-    color: white;
-    transition: all 0.3s ease 0s;
-    transition: opacity 0s ease 0s;
-}
-
-.subnav-links li a:hover {
-    color: rgb(41, 41, 41);
-}
-
 .content {
-    background-color: rgba(0, 0, 0, 0.425);
     border-radius: 4px;
     height: 800px;
     max-width: 4000px;
-    margin: 30px 80px;
+    margin: 60px 80px;
     display: flex;
     justify-content: flex-start;
-    overflow:
 }
 
 .content-right {
@@ -114,7 +98,7 @@ button:hover {
     flex-flow: column;
     justify-content: flex-start;
     align-items: stretch;
-    background-color: white;
+    background-color: #f6edf2;
 }
 
 ::-webkit-scrollbar {
@@ -130,8 +114,8 @@ button:hover {
     justify-content:flex-end;
     align-items: center;
     padding-left: 10px;
-    background: rgb(2,0,36);
-    background: linear-gradient(270deg, rgba(2,0,36,1) 100%, rgb(15, 15, 15) 100%, rgba(0,0,0,1) 100%);
+    background: #303333;
+    background: linear-gradient(176deg, rgba(2,0,36,1) 0%, rgba(60,60,60,1) 0%, #303333 100%);
 }
 
 .side-nav {
@@ -140,13 +124,13 @@ button:hover {
     flex-flow: column;
     justify-content: flex-start;
     align-items: center;
-    background: rgb(2,0,36);
-    background: linear-gradient(270deg, rgba(2,0,36,1) 100%, rgb(15, 15, 15) 100%, rgba(0,0,0,1) 100%);
+    background: #303333;
+    background: linear-gradient(176deg, rgba(2,0,36,1) 0%, rgba(60,60,60,1) 0%, #303333 100%);
     padding-top: 10px;
 }
 
 .icon {
-    color: white;
+    color: #f6edf2;
     cursor: pointer;
     font-size: 25px;
     transition: all 0.3s ease 0s;
@@ -182,6 +166,7 @@ button:hover {
     display: flex;
     flex-flow: column;
     align-items: center;
+    margin-top: 10px;
 }
 
 .project-menu {
@@ -189,18 +174,21 @@ button:hover {
     flex-shrink: 0;
     display: flex;
     flex-flow: column;
-    background-color: rgba(167, 167, 4, 1);
+    background-color: #f6edf2;
+    margin: 10px 0 0 10px;
 }
 
 .project {
+    display: flex;
+    align-items: center;
     min-height: 30px;
     font-family: 'Asul', sans-serif;
-    background-color: rgba(0, 0, 0, 0.288);
+    background-color: #85afaa;
     padding: 5px;
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .project:nth-child(1) {
@@ -212,13 +200,14 @@ button:hover {
 }
 
 .project:hover {
-    background-color: rgba(0, 0, 0, 0.432);
+    background-color: rgb(173, 173, 39);
 }
 
 .todo {
     display: flex;
     flex-flow: row;
     justify-content: flex-start;
+    align-items: center;
     font-family: 'Asul', sans-serif;
     font-size: 16px;
     min-height: 30px;
@@ -226,8 +215,8 @@ button:hover {
     padding: 7px 10px 7px 15px;
     border-radius: 5px;
     margin: 2px;
-    background-color: rgb(85, 73, 130);
-    color: rgb(236, 236, 222);
+    background-color: rgb(219, 219, 219);
+    color: rgb(0, 0, 0);
 }
 
 .todo:nth-child(1) {
@@ -239,35 +228,43 @@ button:hover {
 }
 
 .todo-icon {
-    padding: 0 7px;
+    padding: 0 4px;
     transition: all 0.3s ease 0s;
     cursor: pointer;
+    color: rgba(167, 167, 4, 1);
 }
 
 .todo-icon:hover {
     text-shadow: 1px 1px 5px rgba(224, 204, 88, 0.692);
     text-shadow: 0px 0px 3px rgba(247, 245, 237, 0.384);
-    color: rgba(167, 167, 4, 1);
+    color: black;
 }
 
 .todo-text {
-    padding-left: 15px;
+    padding-left: 11px;
 }
 
 .todo-date {
+    margin-left: 15px;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.project-text {
     margin-left: auto;
+    margin-right: 5px;
+    font-size: 12px;
+    padding: 2px 4px;
+    border-radius: 3px;
+    background-color: #7cc25d;
 }
 
 .checked {
-    color: rgb(52, 184, 80);
-}
-
-.dated {
-    color: rgb(104, 149, 209);
+    color: rgb(49, 133, 74);
 }
 
 .assigned {
-    color: rgb(192, 119, 71);
+    color: rgb(131, 82, 49);
 }
 
 .date {
@@ -280,3 +277,62 @@ button:hover {
     display: inline;
 }
 
+.pop-editor {
+    height: 100px;
+}
+
+.edit-todo {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 12px;
+    background-color: #a7aa3c;
+    border-radius: 5px;
+    position: relative;
+    bottom: 500px;
+    margin: 0px 50px 0px 50px;
+}
+
+.editor-item {
+    padding: 10px;
+    font-family: 'Asul', sans-serif;
+}
+
+.add-project-form {
+    position: relative;
+    top: 22px;
+    margin-left: 5px;
+}
+
+.add-project-submit {
+    border: none;
+    font-family: 'Asul', sans-serif;
+    background-color: #85afaa;
+    padding: 5px;
+}
+
+.delete-icon {
+    color: #303333;
+}
+
+.delete-icon:hover {
+    color: rgb(97, 46, 26);
+}
+
+.project {
+    display: flex;
+}
+
+.delete-project-icon {
+    margin-left: auto;
+    margin-right: 2px;
+    color: #303333;
+}
+
+.delete-project-icon:hover {
+    color: rgb(97, 46, 26);
+}
+
+.project-active {
+    background-color: rgba(167, 167, 4, 1);
+}
