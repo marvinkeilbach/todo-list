@@ -21,58 +21,30 @@
         </nav>
         <a href="#" class="cta"><button>How to Use</button></a>
     </header>
-    <div class="subnav">
-        <nav>
-            <ul class="subnav-links">
-                <li><a href="#">View All</a></li>
-                <li><a href="#">Sort</a></li>
-            </ul>
-        </nav>
-    </div>
     </div>
     <div class="content">
         <div class="content-left side-nav">
-            <i class="fas fa-plus icon icon-side" title="Add todo"></i>
-            <i class="fas fa-folder-plus icon icon-side" title="Add project"></i>
+            <i class="fas fa-plus icon icon-side add-todo" title="Add todo"></i>
+            <i class="fas fa-folder-plus icon icon-side add-project" title="Add project"></i>
         </div>
         <div class="content-right">
             <div class="top-nav">
-                <i class="fas fa-sort-numeric-up icon icon-top" title="Sort due date ascending"></i>
-                <i class="fas fa-sort-numeric-down-alt icon icon-top" title="Sort due date descending"></i>
+                <i class="fas fa-sort-numeric-up icon icon-top sort-ascend" title="Sort due date ascending"></i>
+                <i class="fas fa-sort-numeric-down-alt icon icon-top sort-descend" title="Sort due date descending"></i>
             </div>
             <div class="todo-list-container">
                 <div class="project-menu">
-                    <div class="project">Personal</div>
-                    <div class="project">Business</div>
-                </div>
-                <div class="todo-list">
-                    <div class="todo" data-index: "">
-                        <i class="fas fa-check todo-icon check-icon checked"></i>
-                        <label for="date"><i class="far fa-calendar-alt todo-icon calendar-icon dated"></i></label>
-                        <input type="date" id="date" name="date" class="date"> 
-                        <i class="fas fa-folder todo-icon project-icon assigned"></i>
-                        <p class="todo-text">Finishing up UI</p>
-                        <p class="todo-date">Tue, 25th Sep 2020</p>
-                    </div>                    
-                    <div class="todo" data-index: "">
-                        <i class="fas fa-check todo-icon check-icon checked"></i>
-                        <label for="date"><i class="far fa-calendar-alt todo-icon calendar-icon dated"></i></label>
-                        <input type="date" id="date" name="date" class="date"> 
-                        <i class="fas fa-folder todo-icon project-icon assigned"></i>
-                        <p class="todo-text">Creating rendering functionality</p>
-                        <p class="todo-date">Tue, 25th Sep 2020</p>
-                    </div>                    
-                    <div class="todo" data-index: "">
-                        <i class="fas fa-check todo-icon check-icon checked"></i>
-                        <label for="date"><i class="far fa-calendar-alt todo-icon calendar-icon dated"></i></label>
-                        <input type="date" id="date" name="date" class="date"> 
-                        <i class="fas fa-folder todo-icon project-icon assigned"></i>
-                        <p class="todo-text">Connecting the DOM</p>
-                        <p class="todo-date">Tue, 25th Sep 2020</p>
+                    <div class="project" data-project="default">
                     </div>
+                </div>
+                <form action="#" class="add-project-form">
+                </form>
+                <div class="todo-list">
                 </div>
             </div>
         </div>
+    </div>
+    <div class="pop-editor">
     </div>
 
     <script src="main.js"></script>
