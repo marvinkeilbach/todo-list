@@ -40,7 +40,9 @@ const eventHandlers = (function(){
     }
 
     if(todoList.getProjectList().length === 0) {
-        todoList.addProject('default', true);}
+        todoList.addProject('default', true);
+        todoList.saveToLocalStorage();
+    }
     UIhandling.renderTodos(todoList.getTodoList());
     UIhandling.renderProjects(todoList.getProjectList());
     applyProjectFilter();
@@ -139,7 +141,7 @@ const eventHandlers = (function(){
 
     UIhandling.projectMenu.addEventListener('click', function(e) {
         if(e.target.classList.contains('delete-project-icon')) {
-            const projectIndex = todoList.getProjectList().indexOf(e.target.parentElement.dataset.project);
+            const projectIndex = e.target.parentElement.dataset.project;
             todoList.deleteProject(projectIndex);
             todoList.saveToLocalStorage();
             UIhandling.renderProjects(todoList.getProjectList());
