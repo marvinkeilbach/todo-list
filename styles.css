@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #a7aa3c;
+    background-color: #605838;
 }
 
 li, a, button {
@@ -335,4 +335,12 @@ button:focus {
 
 .project-active {
     background-color: rgba(167, 167, 4, 1);
+}
+
+.projects {
+    display: none;
+}
+
+.active-project-picker {
+    display: inline;
 }
