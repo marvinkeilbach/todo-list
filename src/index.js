@@ -1,22 +1,5 @@
-/* 
-Work out the logic of how to CONNECT the todolist logic, and the display. Make the todolist subscribe to, and the display publish to a mediator.
-
-Whenever an event is fired, the display publishes a "change" (add, delete, etc.) event to the mediator.
-Whenever a change event is published to the mediator, the todolist receives it (subscriber to "updateList" topic) and updates accordingly.
-Whenever the todolist updates, it publishes its current status (array of all todo objects) to the mediator (post-change).
-Whenever the current status is published, the display receives the new data (subscriber to "currentList" topic).
-
-display >>>updateList>>> M >>>updateList>>> todolist
-display <<<currentList<<< M <<<currentList<<< todoList
-*/
-import format from "date-fns/format";
-import add from "date-fns/add";
 import {todoList} from "./todolist";
 import {UIhandling} from "./display";
-
-
-
-
 
 const eventHandlers = (function(){
     let currentProject = "default";
@@ -29,6 +12,9 @@ const eventHandlers = (function(){
 
     const applyProjectFilter = () => {
         if(todoList.getActiveProject() === "default") {
+            todoList.getTodoList().forEach((todo, index) => {
+                todo.index = index;
+            })
             UIhandling.renderTodos(todoList.getTodoList());
         } else {
             const filteredTodos = [...todoList.getTodoList()].filter((todo, index) => {
@@ -47,13 +33,37 @@ const eventHandlers = (function(){
     UIhandling.renderProjects(todoList.getProjectList());
     applyProjectFilter();
 
-    UIhandling.todolistContent.addEventListener('change', function(e){
-        if(e.target.id = 'date') {
-            UIhandling.closeDatePicker(e);
-            const todoIndex = e.target.parentElement.dataset.index;
-            todoList.editDueDate(new Date(e.target.value), todoIndex);
-            applyProjectFilter();
-            todoList.saveToLocalStorage();
+    const unfocusDatePicker = (e) => {
+        UIhandling.closeDatePicker(e);
+        const todoIndex = e.target.parentElement.dataset.index;
+        todoList.editDueDate(new Date(e.target.value), todoIndex);
+        applyProjectFilter();
+        todoList.saveToLocalStorage();
+    }
+
+    const updateProject = (e) => {
+        const todoIndex = e.target.parentElement.dataset.index;
+        const newProject = todoList.getProjectList()[e.target.options.selectedIndex - 1].title;
+        console.log(todoIndex, newProject);
+        todoList.editProject(newProject, todoIndex);
+        UIhandling.hideProjectPicker(e);
+        applyProjectFilter();
+    }
+
+    UIhandling.todolistContent.addEventListener('focusout', (e) => {
+        if(e.target.id === 'date') {
+            unfocusDatePicker(e);
+        } else if(e.target.id === 'projects') {
+            UIhandling.hideProjectPicker(e);
+        }
+        
+    });
+    UIhandling.todolistContent.addEventListener('change', (e) => {
+        if(e.target.id === 'date') {
+            unfocusDatePicker(e);
+        } else if(e.target.id === 'projects') {
+            updateProject(e);
+            // UIhandling.hideProjectPicker(e);
         }
     });
     
@@ -78,10 +88,13 @@ const eventHandlers = (function(){
         if(e.target.classList.contains('delete-icon')) {
             todoList.deleteTodo(todoIndex);
             applyProjectFilter();
+        }        
+        if(e.target.classList.contains('project-icon')) {
+            UIhandling.renderProjectPicker(e);
         }
         todoList.saveToLocalStorage();
     });
-    
+
     UIhandling.editor.addEventListener('click', function(e) {
         if(e.target.id === "submit") {
             const form = e.target.parentElement;

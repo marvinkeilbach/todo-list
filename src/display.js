@@ -1,14 +1,6 @@
-/*
-This module does the following:
-
-1 Rendering the UI according to the state of the todolist, and the state of the current view
-2 Keeping track of the current view of the user (which project folder/ todo is the user viewing?)
-3 Listening to events that change something on the page and publishing this change (to the mediator)
-4 Keeping the current state in local storage(or should that happen somewhere else?)
-
-*/
 import format from "date-fns/format";
 import parseJSON from "date-fns/parseJSON";
+import {todoList} from "./todolist";
 
 const UIhandling = (function() {
     const container = document.querySelector('.content');
@@ -46,6 +38,7 @@ const UIhandling = (function() {
         <input type="text" id="project-input" class="editor-item" value="${todo.project}">
         <input type="submit" value="Save" class="editor-item" id="submit">`
         editor.appendChild(form);
+        form.firstChild.focus();
     }
 
     const hideEditor = () => {
@@ -70,10 +63,32 @@ const UIhandling = (function() {
         projectForm.innerHTML = 
         `<input type="text" class="add-project-input">
         <input type="submit" value="Add Project" class="add-project-submit">`
+        projectForm.firstChild.focus();
     }
 
     const hideProjectAdder = () => {
         projectForm.innerHTML = '';
+    }
+
+    const renderProjectPicker = (e) => {
+        const select = e.target.parentElement.nextElementSibling;
+        select.classList.toggle('active-project-picker');
+        select.innerHTML = '';
+        const option = document.createElement('option');
+        select.appendChild(option);
+        todoList.getProjectList().forEach(project => {
+            console.log(project);
+            const option = document.createElement('option');
+            option.setAttribute('value', project.title);
+            option.innerText = project.title;
+            select.appendChild(option);
+        })
+    }
+
+    const hideProjectPicker = (e) => {
+        const select = e.target;
+        select.innerHTML = '';
+        select.classList.toggle('active-project-picker');
     }
 
     const renderTodos = (array) => {
@@ -94,7 +109,9 @@ const UIhandling = (function() {
             `<i class="fas fa-check todo-icon check-icon ${checked}" title="Check/uncheck"></i>
             <label for="date"><i class="far fa-calendar-alt todo-icon calendar-icon" title="Set date"></i></label>
             <input type="date" id="date" name="date" class="date" value="${format(date, "yyyy-MM-dd")}"> 
-            <i class="fas fa-folder todo-icon project-icon" title="Add to project"></i>
+            <label for="projects"><i class="fas fa-folder todo-icon project-icon" title="Add to project"></i></label>
+            <select name="projects" id="projects" class="projects">
+            </select>
             <i class="fas fa-edit todo-icon edit-icon" title="Edit"></i>
             <p class="todo-text">${todo.title}</p>
             <p class="project-text">${todo.project}</p>
@@ -103,7 +120,7 @@ const UIhandling = (function() {
             todolistContent.appendChild(todoContainer);
         });
     }
-    return {container, todolistContent, editor, renderTodos, openDatePicker, closeDatePicker, renderEditor, hideEditor, addTodo, sortDescend, sortAscend, addProject, projectMenu, projectForm, renderProjectAdder, hideProjectAdder, renderProjects}
+    return {container, todolistContent, editor, renderTodos, openDatePicker, closeDatePicker, renderEditor, hideEditor, addTodo, sortDescend, sortAscend, addProject, projectMenu, projectForm, renderProjectAdder, hideProjectAdder, renderProjects, renderProjectPicker, hideProjectPicker}
 })();
 
 export {UIhandling};
